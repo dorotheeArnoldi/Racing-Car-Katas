@@ -13,9 +13,13 @@ public class HtmlTextConverter
         this.fullFilenameWithPath = fullFilenameWithPath;
     }
 
-    public String convertToHtml() throws IOException{
+    public String convertToHtml() throws IOException {
+        return convertToHtml(new BufferedReader(new FileReader(fullFilenameWithPath)));
+    }
+
+    public String convertToHtml(BufferedReader bufferedReader) throws IOException{
     
-	    BufferedReader reader = new BufferedReader(new FileReader(fullFilenameWithPath));
+	    BufferedReader reader = bufferedReader;
 	    
 	    String line = reader.readLine();
 	    String html = "";
