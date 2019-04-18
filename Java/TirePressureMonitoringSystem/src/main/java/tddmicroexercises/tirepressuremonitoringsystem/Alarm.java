@@ -9,15 +9,28 @@ public class Alarm
 
     boolean alarmOn = false;
 
-    public void check()
+    public Alarm(Sensor sensor) {
+		super();
+		this.sensor = sensor;
+	}
+    public Alarm() {
+  		super();  	
+  	}
+
+	public void check()
     {
         double psiPressureValue = sensor.popNextPressurePsiValue();
 
-        if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue)
+        checkAlarm(psiPressureValue);
+    }
+
+	void checkAlarm(double psiPressureValue) {
+		if (psiPressureValue < LowPressureThreshold 
+				|| HighPressureThreshold < psiPressureValue)
         {
             alarmOn = true;
         }
-    }
+	}
 
     public boolean isAlarmOn()
     {
